@@ -1,0 +1,55 @@
+const addToCart=async(req,res)=>{
+    try {
+        const productid=req.body.product_id
+        const productData=await Products.findOne({_id:productid})
+        const userData=await Users.findOne({_id:req.session.user_id})
+        if(req.session.user_id){
+            const userid=req.session.user_id;
+            const cartData=await Cart.findOne({userId:userid})
+            if(cartData){
+                const productExist= cartData.products.findIndex((product)=>product.productId==productid)
+                if(productExist != -1){
+                    await Cart.updateOne({userId:userid,"products.productId":productid},{$inc:{"products.$.count":1}})
+                    res.json({success:true})
+                   
+                        // res.redirect('/women')
+                   
+                    
+                }else{
+                    await Cart.findOneAndUpdate({userId:req.session.user_id},{$push:{products:{productId:productid,productPrice:productData.price}}})
+                   res.json({success:true})
+                  
+                    // res.redirect('/women')
+              
+                }
+            }else{
+              const cart= new Cart({
+                    userId:userData._id,
+                    user:userData.username,
+                    products:[{
+                        productId:productid,
+                        productPrice:productData.price,
+                       
+                    }]
+                })
+                const cartDatas=await cart.save()
+                if(cartDatas){
+                     res.json({success:true})
+                   
+                        // res.redirect('/women')
+                  
+                        
+                    
+                   
+                }else{
+                    res.redirect('/women')
+                }
+            }
+        }else{
+            res.redirect('/login')
+        }
+    } catch (error){
+        console.log(error.message);
+       
+    }
+}

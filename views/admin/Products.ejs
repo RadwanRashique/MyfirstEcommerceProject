@@ -1,0 +1,152 @@
+
+<%-include("../admin/layouts/header.ejs")  %>
+
+
+
+        
+            <div class="col-12 " >
+    
+                <div class="bg-secondary rounded h-100 p-4 m-3">
+               <a href="/admin/addproducts"  id="addproduct"   >     <button  type="button" class="btn btn-warning" style="border-radius:40px;" >   ADD-NEW-Product </button> </a>
+                    <h3 class="mb-4" style="color: rgb(20, 220, 203);">Product Detailes</h3>
+                    
+                    <div class="table-responsive">
+                        <table class="table" style="color: rgb(22, 26, 29);">
+                            <thead>
+                                <tr style="background-color: rgb(206, 169, 22);">
+                                    <th scope="col">No</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Stocks</th>
+                                    <th scope="col">is_block</th>
+                                    <th scope="col">Block</th>
+                                    
+                                    <th scope="col" >Edit</th>
+                                </tr>
+                            </thead>
+                            <body>
+
+                                <tbody style="background-color:white">
+                                    <% for(let i=0;i<products.length;i++){ %>
+                                        <tr class="text-gray-700 dark:text-gray-400">
+        
+        
+                                            <div>
+                                                <td class="px-4 py-3">
+                                                    <div class="flex items-center text-sm">
+                                                        <!-- Avatar with inset shadow -->
+        
+                                                        <div>
+                                                            <p class="font-semibold">
+                                                                <%= i+1 %>
+                                                            </p>
+        
+                                                        </div>
+                                                    </div>
+                                                </td>
+        
+        
+                                            </div>
+                                            <td class="px-4 py-3">
+                                                <div class="flex items-center text-sm">
+                                                    <!-- Avatar with inset shadow -->
+        
+                                                    <div>
+                                                        <p class="font-semibold">
+                                                            <%= products[i].name %>
+                                                        </p>
+        
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-4 py-3 text-sm ">
+        
+                                                <%= products[i].category%>
+        
+        
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                <%= products[i].price%>
+                                            </td>
+        
+                                            <td class="px-4 py-3 text-xs">
+                                                <img style="width: 60px; height: 60px;" src="/admin/img/<%= products[i].image[0] %>"
+                                                    alt="">
+        
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                <%= products[i].stock%>
+                                            </td>
+                                             <%if(products[i].is_block==true) { %>
+                                            <td class="px-4 py-3 text-sm">
+                                                <h4>Available</h4>
+                                            </td>
+                                            <%  } else {  %>
+                                                <td class="px-4 py-3 text-sm">
+                                                    <h4 style="color:tomato">Blocked</h4>
+                                                </td> 
+                                                <% } %>
+
+
+
+
+
+
+                                                   <%if(products[i].is_block==true) { %>
+                                            <td>
+                                            <a href="/admin/blockProducts?id=<%=products[i]._id%>"><button type="button" class="btn btn-danger" >Block</button></a>
+                
+                                            </td>
+                                                <%}  else  {%>
+                                            <td>
+                                                <a href="/admin/unBlockProduct?id=<%=products[i]._id%>"><button type="button" class="btn btn-success" >Un-Block</button></a>
+                    
+                                                </td>
+                                            
+                                            <% } %>
+                                            <td>
+                                                <div class="flex items-center space-x-4 text-sm">
+                                                    <a href="/admin/productedit?id=<%= products[i]._id %>"><button
+                                                        type="button" class="btn btn-dark"   >EDIT</button> </a>
+                                                </div>
+                                            </td>
+                                            
+                                        </tr>
+                                        <%}%>
+                                </tbody> 
+                           
+                                
+                                    
+                                
+                
+                
+                                
+                              
+                            </body>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <style> 
+                #addproduct{
+                    float: right;
+                }
+
+
+                
+                </style>
+
+
+
+            <!-- product page End -->
+
+
+         
+            
+        </div>
+        <!-- Content End -->
+
+
+       <%- include("../admin/layouts/footer.ejs")  %>

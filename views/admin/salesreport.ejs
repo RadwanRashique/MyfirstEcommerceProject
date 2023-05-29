@@ -1,0 +1,102 @@
+<%-include("../admin/layouts/header.ejs")  %>
+
+<div class="col-12">
+    <div class="bg-secondary rounded h-100 p-4 m-3" >
+        <h3 class="mb-4" style="color: aliceblue;">Sales Report</h3>
+        <a href="/admin/downloadSales"><button type="button" class="btn btn-warning"  style="position: relative; left: 90%; bottom:50px;">Download</button></a>
+        <div class="table-responsive"  style="background-color: rgb(255, 255, 255); ">
+            <table class="table" >
+                <form action="/admin/salesfilter" method="post" >
+                    <input id="start-date" type="date" name="start"  > <input id="end-date" type="date" name="end" ><button>filter</button>
+                </form>
+                <p id="date-error" ></p>
+                <thead>
+
+                    <tr  style="font-weight: bold;">
+                        <th scope="col" >No</th>
+                        <th scope="col">User</th>
+                        <th scope="col">TotalProducts</th>
+                     
+                        <th scope="col">Price</th>
+                        
+                        <th scope="col" >PaymentType</th>
+                        <th scope="col">Date</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+
+
+
+
+
+
+                    <% for(let i=0;i<order.length;i++){ %>
+                        <tr>
+                            
+                            <th scope="row" ><%=i+1%></th>
+                            <td  ><%=order[i].user%></td>
+                            
+                            <td  ><% order[i].products.forEach(product => { %>
+                                    
+                              <%= product.count %> </p>
+                              <% }) %></td>
+                          
+                            <td ><%=order[i].totalAmount%></td>
+                            
+                            <td   ><%=order[i].paymentMethod %></td>
+                          
+                            <td  ><a class="btn btn-dark" ><%=order[i].date.toISOString().substring(0,10)%></a></td>
+                           
+                           
+                                
+                                
+                         
+                        
+                        </tr>
+                        <%}%>
+                    </tbody>
+                    
+                    </table>
+                  
+                    </div>
+                    </div>
+                    </div>
+
+
+                    <script>document.getElementById('link7').classList.add("active") </script>
+
+                    <script>
+                       const startDate = document.getElementById('start-date');
+                    const endDate = document.getElementById('end-date');
+                    const filterButton = document.querySelector('button');
+                    
+                    // Disable dates earlier than today
+                    
+                    
+                    // Add event listeners to date inputs
+                    startDate.addEventListener('change', () => {
+                      endDate.setAttribute('min', startDate.value);
+                    });
+                    endDate.addEventListener('change', () => {
+                      startDate.setAttribute('max', endDate.value);
+                    });
+                    
+                    // Add event listener to filter button
+                    filterButton.addEventListener('click', () => {
+                      // Validate date inputs
+                      if (startDate.value > endDate.value) {
+                        alert('End date cannot be less than start date');
+                        return;
+                      }
+                    });
+                    
+                    </script>
+                    
+
+
+
+<%- include("../admin/layouts/footer.ejs")  %>

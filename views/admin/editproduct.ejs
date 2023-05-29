@@ -1,0 +1,198 @@
+
+
+<%-include("../admin/layouts/header.ejs")  %>
+
+
+
+  
+
+   
+<style>
+
+  
+
+  .container{
+      height: 80%;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;    }
+  .box{
+    border-radius: 20px;
+      width: 850px;
+  height: auto;
+  background-color: rgb(243, 241, 239);
+  position: relative;
+  left: 14px;
+   top: 85px;
+  
+  }
+  a{
+    text-decoration: none;
+  
+    padding-bottom: 13px;
+  }
+
+  .inp{
+        margin-left:26px;
+   
+        padding: 8px;
+        width: 90%;
+    }
+    .inp1{
+        margin-left:26px;
+   
+        padding: 8px;
+        width: 90%;
+    }
+    h1{
+        text-align: center;
+    }
+
+    .but{
+        margin-left: 370px;
+        background-color: rgb(20, 61, 194);
+
+    }
+
+   h5{
+    position: relative;
+    left: 25px;
+    color: rgb(21, 22, 24);
+    
+   }
+  
+
+
+  
+</style>
+
+<body>
+  
+<div class="container">
+<div class="box">
+
+    <% if(typeof message !== 'undefined'){ %>
+        <h2 id="er2" style=    "  color:rgb(32, 29, 218);text-align: center;"><%= message %></h2>
+        <% } %>
+  <div style="width:830px ;height:785px;">
+
+<form  name= "myFornm" action="" method="post" enctype="multipart/form-data">  
+    <h1 class="h11" style="color: rgb(4, 9, 14);">EDIT PRODUCTS</h1> 
+    <h5>Enter  Name Of Product</h5>
+   <input class="inp" type="text" id="name" name="name" value="<%= product.name %>" placeholder="ENTER NAME OF THE PRODUCT"  required>
+   <p id="er1" style="color: red;text-align: center;"></p>
+    <h5>Enter price</h5>
+   <input class="inp" type="number" id="price" name="price" value="<%=product.price%>" placeholder="ENTER PRICE OF THE PRODUCT" required >
+   <p id="er2" style="color: red;text-align: center;"></p>
+
+   <% if(typeof alert !== 'undefined'){ %>
+    <p id="er2" style="color: red;text-align: center;"><%= alert%></p>
+    <% } %>
+<h5>Upload image</h5>
+<br>
+ <div >
+          <% for(let i=0; i<product.image.length ; i++) { %>
+            <div  style="display: flex; margin-left: 10px;" >
+                <div style="width:100px;height: 100px;">
+<img src="/admin/img/<%= product.image[i] %>" style="width:100px;height:150px"></div><% } %>
+  </div>
+
+
+
+
+ </div>
+ <br><br>
+ <input  class="inp"   type="file"  id="img"  name="image" multiple  >
+         <h5>Category of product</h5>
+         
+         <select  name="category"  style="margin-left:40px;background-color: white; margin-left: 26px; padding: 8px; width: 90%;" >
+            <option value="<%=product.category%>" hidden><%=product.category%></option>
+            <% for(let i=0 ; i<cat.length ; i++){
+                if(cat[i].category!=product.category){
+                %>
+              
+            <option value="<%=cat[i].category%>"><%=cat[i].category%>  </option>
+           
+        
+            <% }} %>
+          </select>
+   <p id="er4" style="color: red;text-align: center;"></p>
+    <h5>Discription</h5>
+   <input class="inp" type="text" id="discription" name="discription" value="<%=product.description%>" placeholder="WRITE DISCRIPTION ABOUT PRODUCT">
+   <p id="er6" style="color: red;text-align: center;"></p>
+
+ <h5>Stocks</h5>
+<input class="inp" type="number" id="stocks" name="stocks"value="<%=product.stock%>" placeholder="NUMBER OF STOCKS">
+<p id="er7" style="color: red;text-align: center;"></p>
+
+
+   <% if(typeof message !== 'undefined'){ %>
+    <p id="er2" style=    "  color:rgb(14, 211, 80);text-align: center;"><%= message %></p>
+    <% } %>
+   <input class="btn btn-success but" type="submit" onclick="validation()"    value="submit">
+   
+</form> 
+
+
+
+
+
+</div>
+</div>
+</div>
+
+
+
+<!-- js validation -->
+
+<script>
+  
+       
+    function validation() {
+        const name= document.getElementById("name").value;
+        const price = document.getElementById("price").value;
+        
+        const category=document.getElementById("category").value;
+        const discription = document.getElementById("discription").value;
+        const stocks=document.getElementById("stocks").value;
+    
+
+        
+        
+           
+    
+        if (name === "") {
+            document.getElementById('er1').innerText='Name must be filled out '
+
+
+        }
+        if (price === "") {
+            document.getElementById('er2').innerText='price must be filled out '
+        }
+
+    
+        if (category === "") {
+            document.getElementById('er4').innerText='category must be filled out '  
+        }
+
+
+        if (discription === "") {
+            document.getElementById('er6').innerText='discription must be filled out '
+        }
+
+        if(stocks==="")
+        {
+            document.getElementById("er7").innerText=" fill this"
+        }
+    }
+      
+   
+
+
+   
+
+  </script>
+
+
+<%-include("../admin/layouts/footer.ejs")  %>

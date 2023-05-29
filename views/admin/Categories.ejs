@@ -1,0 +1,64 @@
+<%-include("../admin/layouts/header")  %>
+
+            
+            <div class="col-12 " >
+    
+                <div  style="background-color: #0f887e ;" >
+                    <a href="/admin/addCategory"  id="addproduct"   > <button  type="button" class="btn btn-warning" style="border-radius:40px; margin-top: 10px;" >ADD-CATEGORY </button></a>
+                    <h3 class="mb-4" style="color: rgb(227, 235, 227);">Category List</h3>
+                    
+                    <div class="table-responsive">
+                        <table class="table" style="color: rgb(22, 26, 29);">
+                            <thead>
+                                <tr style="background-color: rgb(245, 244, 242);">
+                                    <th scope="col">No</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Edit</th>
+                                    <th scope="col">Block</th>
+                            
+                                </tr>
+                            </thead>
+
+
+                            <body  style="background-color: aliceblue;">
+
+                                <tbody>
+                                    <% for(let i=0;i<Categorys.length;i++){ %>
+                                        <tr  style="color: aliceblue;">
+                                         
+                                            <td><%= i+1 %></td>
+                                            <td class="px-4 py-3"  >
+                                                        <p class="font-semibold" style="color: rgb(240, 233, 233);" >
+                                                            <%= Categorys[i].category %>
+                                                        </p>
+                                            </td>
+                                            <td><a href="/admin/categoryedit?id=<%=Categorys[i]._id %>" ><button  type="button" class="btn btn-warning">Edit</button></a></td>
+                                            <% if(Categorys[i].is_block==0){ %>
+                                            <td><a href="/admin/categoryblock?id=<%=Categorys[i]._id %>" ><button  type="button" class="btn btn-danger">Block</button></a></td>
+                                             <% } else { %>
+                                             
+                                                <td><a href="/admin/categoryblock?id=<%=Categorys[i]._id  %>&datas=ok"><button>Unblock</button></a> </td>
+                                       <% } %>
+                                                </tr>
+                                        <%}%>
+                                </tbody> 
+                            </body>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <style> 
+                #addproduct{
+                    float: right;
+                }
+                </style>
+
+
+
+
+
+        </div>
+        <!-- Content End -->
+
+
+       <%-include("../admin/layouts/footer.ejs") %>

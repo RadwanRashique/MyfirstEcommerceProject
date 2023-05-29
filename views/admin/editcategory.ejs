@@ -1,0 +1,114 @@
+<%-include("../admin/layouts/header.ejs")  %>
+
+
+
+  
+   
+<style>
+
+    body{
+       
+        background-size: 100%;
+    }
+
+  .container{
+      height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;    }
+  .box{
+    border-radius: 20px;
+      width: 850px;
+  height: auto;
+  background-color: rgb(243, 241, 239);
+  position: relative;
+  left: 14px;
+    bottom: 95px;
+  }
+  a{
+    text-decoration: none;
+   
+    padding-bottom: 13px;
+  }
+
+  .inp{
+        margin-left:26px;
+   
+        padding: 8px;
+        width: 90%;
+    }
+    .inp1{
+        margin-left:26px;
+   
+        padding: 8px;
+        width: 90%;
+    }
+    h1{
+        text-align: center;
+    }
+
+    .but{
+        margin-left: 370px;
+        background-color: rgb(20, 61, 194);
+
+    }
+
+   h5{
+    position: relative;
+    left: 25px;
+    color: rgb(21, 22, 24);
+    
+   }
+
+
+  
+</style>
+
+<body>
+  
+<div class="container">
+<div class="box">
+   
+    <% if(typeof message !== 'undefined'){ %>
+        <h2 id="er2" style=    "  color:rgb(32, 29, 218);text-align: center;"><%= message %></h2>
+        <% } %>
+    
+<form   action="" method="post" >  
+    <h1 class="h11" style="color: rgb(4, 9, 14);">EDIT CATEGORY</h1> 
+    <h5>Category Name</h5>
+   <input class="inp" type="text" id="name" value="<%= category.category %>" name="category" placeholder="ENTER CATEGORY NAME"  required>
+   <p id="en1" style="color: red;text-align: center;"></p>
+  
+   <input class="btn btn-success but" type="submit" onclick="validation()" value="submit">
+   
+</form> 
+
+
+
+
+
+</div>
+</div>
+
+
+
+<!-- js validation -->
+
+<script>
+       
+    function validation() {
+        const name= document.getElementById("name").value;
+        if (name === "") {
+            document.getElementById('en1').innerText='Name must be filled out '
+
+
+        }
+        
+    }
+        
+      
+
+  </script>
+<%-include("../admin/layouts/footer.ejs")  %>
+

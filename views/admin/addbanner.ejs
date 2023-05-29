@@ -1,0 +1,139 @@
+<%-include("../admin/layouts/header.ejs")  %>
+   
+   
+<style>
+
+   
+
+  .container{
+      height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;    }
+  .box{
+    border-radius: 20px;
+      width: 850px;
+  height: auto;
+  background-color: rgb(243, 241, 239);
+  position: relative;
+    left: 12px;
+    bottom:65px;
+    
+  
+  }
+  a{
+    text-decoration: none;
+ 
+    padding-bottom: 13px;
+  }
+
+  .inp{
+        margin-left:26px;
+   
+        padding: 8px;
+        width: 90%;
+    }
+    .inp1{
+        margin-left:26px;
+   
+        padding: 8px;
+        width: 90%;
+    }
+    h1{
+        text-align: center;
+    }
+
+    .but{
+        margin-left: 370px;
+        background-color: rgb(20, 61, 194);
+
+    }
+
+   h5{
+    position: relative;
+    left: 25px;
+    color: rgb(21, 22, 24);
+    
+   }
+
+
+  
+</style>
+
+<body>
+  
+<div class="container">
+<div class="box">
+
+    <% if(typeof message !== 'undefined'){ %>
+        <h2 id="er2" style=    "  color:rgb(32, 29, 218);text-align: center;"><%= message %></h2>
+        <% } %>
+    
+<form action="/admin/addBanners" method="post" enctype="multipart/form-data" >  
+    <h1 class="h11" style="color: rgb(4, 9, 14);">ADD BANNER</h1> 
+    <h5>Enter Heading</h5>
+   <input class="inp" type="text" id="name" name="header" placeholder="ENTER HEADING FOR THE BANNER"  required>
+   <p id="er1" style="color: red;text-align: center;"></p>
+    <h5>Enter Discription</h5>
+   <input class="inp" type="text" id="description" name="description" placeholder="ENTER DISCRIPTION FOR THE BANNER" required >
+   <p id="er2" style="color: red;text-align: center;"></p>
+
+   <% if(typeof alert !== 'undefined'){ %>
+    <p id="er2" style="color: red;text-align: center;"><%= alert%></p>
+    <% } %>
+<h5>Upload image</h5>
+<input  class="inp"   type="file"  id="filename"  name="image"  placeholder="IMAGE OF THE BANNER"   required>
+<p id="er3"  style="color:red;text-align:center;"></p>
+        
+   <% if(typeof message !== 'undefined'){ %>
+    <p id="er2" style=    "  color:rgb(14, 211, 80);text-align: center;"><%= message %></p>
+    <% } %>
+   <input class="btn btn-success but" type="submit" onclick="validation()" value="submit">
+   
+</form> 
+
+
+
+
+
+</div>
+</div>
+
+
+
+<!-- js validation -->
+
+<script>
+       
+    function validation() {
+        const head= document.getElementById("header").value;
+        const des = document.getElementById("description").value;
+        const file=document.getElementById("filename").value;
+      
+
+        
+        
+           
+    
+        if (head === "") {
+            document.getElementById('er1').innerText='Heading must be filled out '
+
+
+        }
+        if (des === "") {
+            document.getElementById('er2').innerText='Discription must be filled out '
+        }
+
+        if (file==="")
+        {
+            document.getElementById("er3").innerText="select banner image"
+        }
+       
+    }
+      
+
+  </script>
+
+
+<%-include("../admin/layouts/footer.ejs")  %>

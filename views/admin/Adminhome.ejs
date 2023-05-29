@@ -1,0 +1,220 @@
+
+
+<%-include("../admin/layouts/header.ejs")  %>
+
+  <!-- Sale & Revenue Start -->
+  <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-line fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2"  style="color: aliceblue;">Total Sales</p>
+                    <h6 class="mb-0"><%=totalOrder%>-Items</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2" style="color: aliceblue;">Total Revenue</p>
+                    <h6 class="mb-0">₹<%= total%></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-area fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2"   style="color: aliceblue;">Total users</p>
+                    <h6 class="mb-0"><%=totalUser%></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2"   style="color: aliceblue;">Total Products</p>
+                    <h6 class="mb-0"><%= totalProducts%></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sale & Revenue End -->
+
+
+
+<!-- Sales Chart Start -->
+
+
+<h3 style="text-align: center;text-decoration: underline;" >REVENUE PROGRESS</h3>
+<div class="chart_data d-flex">
+   
+    <div style="width: 25rem;">
+        <canvas id="myChart"></canvas>
+    </div>
+    <hr>
+    <div style="width: 45rem;">
+        <canvas id="barChart"></canvas>
+        <input type="hidden" id="input1" value="<%=yearChart[0]%>">
+        <input type="hidden" id="input2" value="<%=yearChart[1]%>">
+        <input type="hidden" id="input3" value="<%=yearChart[2]%>">
+        <input type="hidden" id="input4" value="<%=yearChart[3]%>">
+        <input type="hidden" id="input5" value="<%=yearChart[4]%>">
+        <input type="hidden" id="input6" value="<%=yearChart[5]%>">
+        <input type="hidden" id="input7" value="<%=yearChart[6]%>">
+        <input type="hidden" id="input8" value="<%=yearChart[7]%>">
+        <input type="hidden" id="input9" value="<%=yearChart[8]%>">
+        <input type="hidden" id="input10" value="<%=yearChart[9]%>">
+        <input type="hidden" id="input11" value="<%=yearChart[10]%>">
+        <input type="hidden" id="input12" value="<%=yearChart[11]%>">
+    </div>
+</div>
+<br>
+<br>
+<hr style="color: aliceblue;" >
+<!-- Sales Chart End -->
+
+
+<!-- Recent Sales Start -->
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/admin_assets/lib/chart/chart.min.js"></script>
+<script src="/admin_assets/lib/easing/easing.min.js"></script>
+<script src="/admin_assets/lib/waypoints/waypoints.min.js"></script>
+<script src="/admin_assets/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/admin_assets/lib/tempusdominus/js/moment.min.js"></script>
+<script src="/admin_assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="/admin_assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
+<script>
+const ctx = document.getElementById('myChart');
+const barChart = document.getElementById('barChart')
+const barChartItems = document.getElementById("myChart-items")
+
+const input1 = Number(document.getElementById('input1').value)
+const input2 = Number(document.getElementById('input2').value)
+const input3 = Number(document.getElementById('input3').value)
+const input4 = Number(document.getElementById('input4').value)
+const input5 = Number(document.getElementById('input5').value)
+const input6 = Number(document.getElementById('input6').value)
+const input7 = Number(document.getElementById('input7').value)
+const input8 = Number(document.getElementById('input8').value)
+const input9 = Number(document.getElementById('input9').value)
+const input10 = Number(document.getElementById('input10').value)
+const input11 = Number(document.getElementById('input11').value)
+const input12 = Number(document.getElementById('input12').value)
+
+new Chart(barChart, {
+type: 'bar',
+data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [{
+        label: 'monthly sale report',
+        data: [input1, input2, input3, input4, input5, input6, input7, input8, input9, input10, input11, input12],
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)'
+        ],
+        borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)'
+        ],
+        borderWidth: 1
+    }]
+}
+});
+new Chart(ctx, {
+type: 'doughnut',
+data: {
+    labels: ['COD', 'online'],
+    datasets: [{
+        label: 'Payment Method',
+        data: ['<%=cod%>', '<%=online%>'],
+        backgroundColor: [
+            'rgb(255, 0, 0)',
+            'rgb(128, 128, 128)'
+        ],
+        hoverOffset: 4
+    }]
+}
+});
+
+//user side
+// 
+// item progress
+
+const salescount1 = Number(document.getElementById('salescount1').value)
+const salescount2 = Number(document.getElementById('salescount2').value)
+const salescount3 = Number(document.getElementById('salescount3').value)
+const salescount4 = Number(document.getElementById('salescount4').value)
+const salescount5 = Number(document.getElementById('salescount5').value)
+const salescount6 = Number(document.getElementById('salescount6').value)
+const salescount7 = Number(document.getElementById('salescount7').value)
+const salescount8 = Number(document.getElementById('salescount8').value)
+const salescount9 = Number(document.getElementById('salescount9').value)
+const salescount10 = Number(document.getElementById('salescount10').value)
+const salescount11 = Number(document.getElementById('salescount11').value)
+const salescount12 = Number(document.getElementById('salescount12').value)
+
+
+new Chart(barChartItems, {
+type: 'bar',
+data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [{
+        label: 'monthly sale report',
+        data: [salescount1, salescount2, salescount3, salescount4, salescount5, salescount6, salescount7, salescount8, salescount9, salescount10, salescount11, salescount12],
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)'
+        ],
+        borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)'
+        ],
+        borderWidth: 1
+    }]
+}
+});    
+
+
+
+</script>
+
+
+
+
+     
+
+  <%-include("../admin/layouts/footer.ejs")  %>
+
+  

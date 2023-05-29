@@ -1,0 +1,323 @@
+<%-include("../admin/layouts/header.ejs")  %>
+
+
+<!-- sweet alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="sweetalert2.all.min.js"></script>
+		<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+		
+
+
+
+
+            <!-- product page start  -->
+        
+            <div class="col-12 " >
+    
+                <div class="bg-secondary rounded h-100 p-4 m-3">
+            
+                    <h3 class="mb-4" style="color: rgb(20, 220, 203);">Order Detailes</h3>
+                    
+                    <div class="table-responsive">
+                        <table class="table" style="color: rgb(22, 26, 29);">
+                            <thead>
+                                <tr  style="background-color: rgb(206, 169, 22); ">
+                                  
+                                
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Price </th>
+                                    <th scope="col">PaymentMethod</th>
+                                    <th scope="col">Status</th>
+                                    
+                                    <th scope="col">Action</th>
+                                    
+                                    <th scope="col">View</th>
+                                     <th scope="col">return.Req</th>
+                                   
+                                     <th scope="col">Ret.Reason</th>
+                                     
+                                    
+                                   
+                                   
+                                </tr>
+                            </thead>
+                            <body>
+                             
+                                <tbody style="background-color:white">
+                                    <% for(let i=orderData.length-1 ; i>=0; i--) { %>
+                                    
+                                        <tr class="text-gray-700 dark:text-gray-400">
+        
+                                        
+                                            <div >
+                                               
+
+        
+                                            </div>
+                                            <td class="px-4 py-3">
+                                                <div class="flex items-center text-sm">
+                                                    <!-- Avatar with inset shadow -->
+        
+                                                    <div>
+                                                        <p class="font-semibold">
+                                                        <%=orderData[i].user  %>
+                                                        </p>
+                                                      
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-4 py-3 text-sm ">
+        
+                                                
+                                                <p>  <%=orderData[i].date.toString().substring(0,10)  %></p>
+        
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                               <p><%=orderData[i].totalAmount  %></p>
+                                            </td>
+        
+                                            <td class="px-4 py-3 text-xs">
+                                                
+                                            <%= orderData[i].paymentMethod  %>
+                                            </td>
+                                            
+                                            <td class="px-4 py-3 text-xs">
+                                                
+                                                <%= orderData[i].status  %>
+                                            </td>
+                                            <% if (orderData[i].status != "Cancelled" && orderData[i].status != "Return Approved"   && orderData[i].status != "Return Rejected"  && orderData[i].status != "Delivered"  && orderData[i].status != "Return"){ %>
+                                              
+                                            <td> <select onchange="status('<%=orderData[i]._id %>','status<%=i%>')" name="status<%=i%>" id="status<%=i%>" class="form-control" style="background-color: white;  color: black; width: 78px;"  >
+                                                <option selected disabled hidden value="" >Status</option>
+                                                   <option class="btn btn-danger" value="Cancelled" >Cancel</option> 
+                                                   <% if( orderData[i].status!="Pending"&& orderData[i].status!="Packed" && orderData[i].status!="Shipped" && orderData[i].status!="Placed") {%>
+                                                   <option class="btn btn-warning" value="Packed" >packed</option> 
+                                                   <option class="btn btn-success" value="Shipped" >Shipped</option> 
+                                                   <option class="btn btn-info" value="Delivered">Delivered</option>
+                                                   <% } %>
+                                                  
+                                                   <% if(orderData[i].status!="Placed" && orderData[i].status!="Packed" && orderData[i].status!="Shipped"  ) {%>
+                                                  <option class="btn btn-light" value="Placed">Placed</option>
+                                                  <% } %>
+                                                
+
+                                                    
+                                                  <% if(  orderData[i].status!="Shipped" && orderData[i].status!="Placed" && orderData[i].status!="Pending") {%>
+                                                    <option class="btn btn-success" value="Shipped" >Shipped</option> 
+                                                    <% } %>
+                                                  
+                                                    <% if(  orderData[i].status!="Placed" && orderData[i].status!="Shipped" && orderData[i].status!="Pending" && orderData[i].status!="Packed") {%>
+                                                        <option class="btn btn-success" value="Shipped" >Shipped</option> 
+                                                        <% } %>
+                                                      
+   <% if( orderData[i].status == "Placed" && orderData[i].status=="Packed" ) {%>
+                                                         
+                                                  <% if(orderData[i].status!="Packed" && orderData[i].status!="Pending" ) {%>
+                                                    <option class="btn btn-info" value="Delivered">Delivered</option>
+                                                    <% } %>
+
+                                                      <% } %>
+                                                  
+
+                                                      <% if( orderData[i].status == "Placed"  ) {%>
+                                                        <option class="btn btn-warning" value="Packed" >packed</option> 
+                                                        <% } %>
+
+
+                                                      <% if( orderData[i].status == "Shipped"  ) {%>
+                                                        <option class="btn btn-info" value="Delivered">Delivered</option>
+                                                        <% } %>
+                                                 
+                                                      
+                                                  <!-- <option class="btn btn-warning" value="Pending">Pending</option> -->
+                                              </select></td>
+                                                    
+                                            
+                                               <%}else { %>
+                                                <td>
+                                            <h5 style="text-align: center;">-</h5>
+
+                                                </td>
+                                                <% } %>
+                                            
+                                          
+
+                                            <td class="px-4 py-3 text-xs">
+                                                
+                                                <a href="/admin/viewOrder?id=<%=orderData[i]._id  %>    " ><button type="button" class="btn btn-warning"  style="border-radius: 10px;">View</button></a>
+                                            </td>
+                                        
+                                          
+                                    
+
+                                        
+                                     
+                                    
+
+                                            <%if(orderData[i].status!="Cancelled")  {%>
+                           
+                                        <% if(orderData[i].status == 'Return' ){ %>
+                                            <td><a  onclick="statusreject('<%=orderData[i]._id %>','Return Rejected')" href="" class="btn btn-danger" >REJECT</a> <a  onclick="statusreject('<%=orderData[i]._id %>','Return Approved')" href="" class="btn btn-success" >APPROVE</a></td>
+                                            <%}else if(orderData[i].status == 'Return Rejected' ) {%>
+                                             <td>Rejected</td>
+                                             <%}else if(orderData[i].status == 'Return Approved' ) {%>
+                                                 <td>Approved</td>
+                                                 <%}else{%>
+                                           <td> Not yet</td>
+                                                     <%}%>
+                                         
+                                        
+
+
+
+                                    <%} else {  %>
+                                   <td>  </td>
+                                        <% } %>
+
+
+
+
+                                       <% if(orderData[i].status=="Return" || orderData[i].status=="Return Approved" || orderData[i].status=="Return Rejected") {%>
+                                        <td class="px-4 py-3 text-xs">
+                                                
+                                            <%= orderData[i].reason  %>
+                                            </td>
+
+                                            <% } else { %>
+
+
+                                                <td class="px-4 py-3 text-xs" style="text-align: center;">
+                                                
+                                                    -
+                                                    </td>
+        <% } %>
+
+                                    </tr>
+
+
+                                         <% } %>
+
+
+
+                                </tbody> 
+                                
+                                
+                
+                
+                                
+                              
+                            </body>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <style> 
+                #addproduct{
+                    float: right;
+                }
+
+
+                
+                </style>
+
+
+
+            <!-- product page End -->
+
+
+         
+            
+        </div>
+        <!-- Content End -->
+
+
+
+
+
+<script>
+
+function status(orderId,Id){
+   
+    var status = document.getElementById(Id).value
+   
+      console.log(status)
+      console.log(orderId)
+ 
+     $.ajax({
+
+
+         
+             url:'/admin/orderStatus',
+             method:'post',
+             data:{
+                 data:status,
+                 id:orderId
+                
+             },
+             success:(response)=>{
+                 if(response.success){
+                   location.reload()
+                 }else{
+                     location.href='/admin/showOrdrs'
+                 }
+                
+                }
+    
+          })
+ }
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ async function statusreject(orderId, status) {
+  event.preventDefault();
+  Swal.fire({
+    title: 'Reason for Reject',
+    input: 'radio',
+    inputOptions: {
+      'Sorry No Return Option In your location': 'No Return Option In your location',
+      'Sorry That product dont have return option': 'That product dont have return option',
+      
+    },
+    inputValidator: (value) => {
+      if (!value) {
+        return 'You must select a reason';
+      }
+    },
+    showCancelButton: true,
+  }).then((result) => {
+    const reason = result.value;
+    if (result.isConfirmed) {
+      $.ajax({
+        url: '/admin/orderStatus',
+        method: 'post',
+        data: {
+          data: status,
+          id: orderId,
+          reason
+        },
+        success: (response) => {
+          if (response.success) {
+            location.reload();
+          } else {
+            location.href = '/admin/showOrders';
+          }
+        }
+      });
+    }
+  });
+}
+
+</script>
+   <%-include("../admin/layouts/footer.ejs")  %>

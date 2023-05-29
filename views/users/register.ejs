@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiGiZone</title>
+</head>
+<body>
+    
+
+
+
+
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+   
+<style>
+
+    body{
+        background-image: url('https://img.freepik.com/premium-photo/online-shopping-concept-web-mobile-application-ecommerce-top-view-smartphone-with-carton-paper-box-with-shopping-cart-blue-background-3d-rendering_20693-786.jpg?w=740');
+        background-size: 100%;
+    }
+
+  .container{
+      height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;    }
+  .box{
+    border-radius: 20px;
+      width: 450px;
+  height: auto;
+  background-color: rgb(17, 19, 143);
+  position: relative;
+    left: 400px;
+    position: relative;
+    left:-18px;
+  
+  }
+  a{
+    text-decoration: none;
+    margin-left: 180px;
+    padding-bottom: 13px;
+  }
+
+  .inp{
+        margin-left:26px;
+   
+        padding: 8px;
+        width: 90%;
+    }
+    .inp1{
+        margin-left:26px;
+   
+        padding: 8px;
+        width: 90%;
+    }
+    h1{
+        text-align: center;
+    }
+
+    .but{
+        margin-left: 180px;
+    }
+
+    .lastline
+{
+    margin-left: 130px;
+}
+  
+</style>
+
+<body>
+  
+<div class="container">
+<div class="box">
+
+    
+    
+<form  name= "myFornm" action="" method="post"> 
+    <h1 class="h11" style="color: aliceblue;">CREATE AN ACCOUNT</h1> 
+   <input class="inp" type="text" id="name" name="name" placeholder="ENTER YOUR NAME"  required>
+   <p id="er1" style="color: red;text-align: center;"></p>
+  
+   <input class="inp" type="email" id="email" name="email" placeholder="ENTER YOUR EMAIL" required >
+   <p id="er2" style="color: red;text-align: center;"></p>
+
+   <% if(typeof alert !== 'undefined'){ %>
+    <p id="er2" style="color: red;text-align: center;"><%= alert%></p>
+    <% } %>
+
+<input  class="inp"   type="age"  id="age"  name="age"  placeholder="ENTER YOUR AGE"  required>
+<p id="er3"  style="color:red;text-align:center;"></p>
+
+   <input class="inp" type="number" id="phone" name="phone" placeholder="ENTER YOUR MOBILE NUMBER" required>
+   <p id="er4" style="color: red;text-align: center;"></p>
+
+    <div class="inp1">
+
+  </div>
+   <input class="inp" type="password" id="password" name="password" placeholder="ENTER YOUR PASSWORD">
+   <p id="er6" style="color: red;text-align: center;"></p>
+
+   
+
+   <% if(typeof message !== 'undefined'){ %>
+    <p  style=    "  color:rgb(233, 227, 227);text-align: center;"><%= message %></p>
+    <% } %>
+   <input  class="btn btn-success but" type="submit" onclick="validation()" value="Sign Up">
+  <a class="lastline"  style="color: rgb(158, 155, 155);"  href="/login" >Already have an Account? <h  style="color: aqua;">Sign In
+</a></h3>
+
+   
+</form> 
+
+
+
+
+
+</div>
+</div>
+
+
+
+<!-- js validation -->
+
+<script>
+       
+    function validation() {
+        const name= document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const age=document.getElementById("age").value;
+        const mob=document.getElementById("phone").value;
+        const password = document.getElementById("password").value;
+        const confirmpassword=document.getElementById("confirmpassword").value;
+        // const male=document.getElementById('male');
+        // const female=document.getElementById('female');
+        // const other=document.getElementById('other');
+
+
+        
+        
+           
+    
+        if (name === "") {
+            document.getElementById('er1').innerText='Name must be filled out '
+
+
+        }
+        if (email === "") {
+            document.getElementById('er2').innerText='Email must be filled out '
+        }
+
+        if (age==="")
+        {
+            document.getElementById("er3").innerText="Age must be filled out"
+        }
+        if (mob === "") {
+            document.getElementById('er4').innerText='Mobile Number must be filled out '  
+        }
+
+//         if(!male.checked && !female.checked && !other.checked){
+
+//             document.getElementById('er5').innerText='Gender must be filled out '
+
+
+// }
+        if (password === "") {
+            document.getElementById('er6').innerText='password must be filled out '
+        }
+
+        if(confirmpassword==="")
+        {
+            document.getElementById("er7").innerText="Confirm your password"
+        }
+    }
+      
+
+  </script>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+-->
+
+</body>
+
+</html>

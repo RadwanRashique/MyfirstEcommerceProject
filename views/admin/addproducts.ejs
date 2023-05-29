@@ -1,0 +1,175 @@
+
+<%-include("../admin/layouts/header.ejs")  %>
+
+
+
+  
+   
+<style>
+
+    body{
+     
+        background-size: 100%;
+    }
+
+  .container{
+      height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;    }
+  .box{
+    border-radius: 20px;
+      width: 850px;
+  height: auto;
+  background-color: rgb(243, 241, 239);
+  position: relative;
+  left: 14px;
+    top: 50px;
+  
+  }
+  a{
+    text-decoration: none;
+   
+    padding-bottom: 13px;
+  }
+
+  .inp{
+        margin-left:26px;
+   
+        padding: 8px;
+        width: 90%;
+    }
+    .inp1{
+        margin-left:26px;
+   
+        padding: 8px;
+        width: 90%;
+    }
+    h1{
+        text-align: center;
+    }
+
+    .but{
+        margin-left: 370px;
+        background-color: rgb(20, 61, 194);
+
+    }
+
+   h5{
+    position: relative;
+    left: 25px;
+    color: rgb(21, 22, 24);
+    
+   }
+
+
+  
+</style>
+
+<body>
+  
+<div class="container">
+<div class="box">
+
+    <% if(typeof message !== 'undefined'){ %>
+        <h2 id="er2" style=    "  color:rgb(32, 29, 218);text-align: center;"><%= message %></h2>
+        <% } %>
+    
+<form  name= "myFornm" action="" method="post" enctype="multipart/form-data">  
+    <h1 class="h11" style="color: rgb(4, 9, 14);">ADD PRODUCTS</h1> 
+    <h5>Enter  Name Of Product</h5>
+   <input class="inp" type="text" id="name" name="name" placeholder="ENTER NAME OF THE PRODUCT"  required>
+   <p id="er1" style="color: red;text-align: center;"></p>
+    <h5>Enter price</h5>
+   <input class="inp" type="number" id="price" name="price" placeholder="ENTER PRICE OF THE PRODUCT" required >
+   <p id="er2" style="color: red;text-align: center;"></p>
+
+   <% if(typeof alert !== 'undefined'){ %>
+    <p id="er2" style="color: red;text-align: center;"><%= alert%></p>
+    <% } %>
+<h5>Upload image</h5>
+<input  class="inp"   type="file"  id="img"  name="image"  placeholder="IMAGE OF THE PRODUCT" multiple  required>
+<p id="er3"  style="color:red;text-align:center;"></p>
+         <h5>Category of product</h5>
+  <select name="category"  style="margin-left:40px;background-color: white; margin-left: 26px; padding: 8px; width: 90%;"  >
+    <% cat.forEach((categ)=> {%>
+    <option value="<%=categ.category%>" style="background-color: white;"><%=categ.category%></option>
+
+    <% }) %>
+  </select>
+   <p id="er4" style="color: red;text-align: center;"></p>
+    <h5>Discription</h5>
+   <input class="inp" type="text" id="discription" name="discription" placeholder="WRITE DISCRIPTION ABOUT PRODUCT">
+   <p id="er6" style="color: red;text-align: center;"></p>
+
+ <h5>Stocks</h5>
+<input class="inp" type="number" id="stocks" name="stocks" placeholder="NUMBER OF STOCKS">
+<p id="er7" style="color: red;text-align: center;"></p>
+
+
+   <% if(typeof message !== 'undefined'){ %>
+    <p id="er2" style=    "  color:rgb(14, 211, 80);text-align: center;"><%= message %></p>
+    <% } %>
+   <input class="btn btn-success but" type="submit" onclick="validation()" value="submit">
+   
+</form> 
+
+
+
+
+
+</div>
+</div>
+
+
+
+<!-- js validation -->
+
+<script>
+       
+    function validation() {
+        const name= document.getElementById("name").value;
+        const price = document.getElementById("price").value;
+        const img=document.getElementById("img").value;
+        const category=document.getElementById("category").value;
+        const discription = document.getElementById("discription").value;
+        const stocks=document.getElementById("stocks").value;
+    
+
+        
+        
+           
+    
+        if (name === "") {
+            document.getElementById('er1').innerText='Name must be filled out '
+
+
+        }
+        if (price === "") {
+            document.getElementById('er2').innerText='price must be filled out '
+        }
+
+        if (img==="")
+        {
+            document.getElementById("er3").innerText="select an image"
+        }
+        if (category === "") {
+            document.getElementById('er4').innerText='category must be filled out '  
+        }
+
+
+        if (discription === "") {
+            document.getElementById('er6').innerText='discription must be filled out '
+        }
+
+        if(stocks==="")
+        {
+            document.getElementById("er7").innerText=" fill this"
+        }
+    }
+      
+
+</script>
+
+<%-include("../admin/layouts/footer.ejs")  %>
