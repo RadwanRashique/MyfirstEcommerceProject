@@ -21,8 +21,8 @@ const Razorpay = require("razorpay");
 
 
 var instance = new Razorpay({
-  key_id: process.env.key_id,
-  key_secret: process.env.key_secret,
+  key_id: process.env.KEY_ID,
+  key_secret: process.env.KEY_SECRET,
 });
 
 const { Console } = require("console");

@@ -6,7 +6,7 @@ dotenv.config();
 const mongoose = require("mongoose");
 
 // pass path   from mongo
-mongoose.connect(process.env.MONGO);
+mongoose.connect(process.env.MONGO_URL);
 
 const path = require("path");
 
@@ -57,5 +57,5 @@ app.use((req, res) => {
 // here public is folder which contain font image....
 
 //  app.use(express.static("public/admin"))
-
-app.listen(3000, console.log("server is now running well "));
+const port=process.env.PORT || 3000
+app.listen(port, console.log("server is now running well "));
