@@ -18,58 +18,134 @@
    
 <style>
 
-    body{
+body {
         background-image: url('https://img.freepik.com/premium-photo/online-shopping-concept-web-mobile-application-ecommerce-top-view-smartphone-with-carton-paper-box-with-shopping-cart-blue-background-3d-rendering_20693-786.jpg?w=740');
         background-size: 100%;
+        margin: 0; /* Remove default margin for better responsiveness */
     }
 
-  .container{
-      height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;    }
-  .box{
-    border-radius: 20px;
-      width: 450px;
-  height: auto;
-  background-color: rgb(17, 19, 143);
-  position: relative;
-    left: 400px;
-    position: relative;
-    left:-18px;
-  
-  }
-  a{
-    text-decoration: none;
-    margin-left: 180px;
-    padding-bottom: 13px;
-  }
+    .container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-  .inp{
-        margin-left:26px;
-   
-        padding: 8px;
-        width: 90%;
+    .box {
+        border-radius: 20px;
+        width: 450px;
+        height: auto;
+        background-color: rgb(17, 19, 143);
+        position: relative;
+        left: 0; /* Adjust left position for responsiveness */
+        margin: 0 20px; /* Add margin for better spacing on smaller screens */
     }
-    .inp1{
-        margin-left:26px;
-   
-        padding: 8px;
-        width: 90%;
+
+    a {
+        text-decoration: none;
+        text-align: center; /* Center the link text */
+        display: block; /* Make the link a block element for better spacing */
+        margin-top: 10px; /* Add margin at the top for better spacing */
     }
-    h1{
+
+    .inp {
+        margin-left: 26px;
+        padding: 8px;
+        width: calc(100% - 52px); /* Adjust input width for better responsiveness */
+    }
+
+    .inp1 {
+        margin-left: 26px;
+        padding: 8px;
+        width: calc(100% - 52px); /* Adjust input width for better responsiveness */
+    }
+
+    h1 {
         text-align: center;
     }
 
-    .but{
-        margin-left: 180px;
+    @media (min-width: 600px) {
+        /* Center the button after the screen width is 600 pixels or more */
+        .but {
+
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%; /* You can adjust the width as needed */
+        }
     }
 
-    .lastline
-{
-    margin-left: 130px;
-}
+    .lastline {
+        text-align: center; /* Center the link text */
+    }
+
+
+
+@media (max-width: 576px) {
+        /* Extra small devices (phones) */
+        body {
+            background-size: cover;
+        }
+
+        .container {
+            height: auto;
+        }
+
+        .box {
+            width: 100%;
+            left: 0;
+        }
+
+        a {
+            margin-left: 0;
+        }
+
+        .but {
+           padding: -10; 
+          width: 100%;
+        }
+
+        /* Add more adjustments as needed for a better responsive design */
+    }
+
+    @media (min-width: 577px) and (max-width: 767px) {
+        /* Small devices (landscape phones) */
+        .box {
+            width: 90%;
+            left: 5%;
+        }
+
+        /* Add more adjustments as needed for a better responsive design */
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+        /* Medium devices (tablets) */
+        .box {
+            width: 80%;
+            left: 10%;
+        }
+
+        /* Add more adjustments as needed for a better responsive design */
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        /* Large devices (desktops) */
+        .box {
+            width: 70%;
+            left: 15%;
+        }
+
+        /* Add more adjustments as needed for a better responsive design */
+    }
+
+    @media (min-width: 1200px) {
+        /* Extra large devices (large desktops) */
+        .box {
+            width: 60%;
+            left: 20%;
+        }
+
+        /* Add more adjustments as needed for a better responsive design */
+    }
   
 </style>
 
@@ -109,9 +185,13 @@
    <% if(typeof message !== 'undefined'){ %>
     <p  style=    "  color:rgb(233, 227, 227);text-align: center;"><%= message %></p>
     <% } %>
-   <input  class="btn btn-success but" type="submit" onclick="validation()" value="Sign Up">
-  <a class="lastline"  style="color: rgb(158, 155, 155);"  href="/login" >Already have an Account? <h  style="color: aqua;">Sign In
-</a></h3>
+  
+   <div>
+    <input  class="btn btn-success but" type="submit" onclick="validation()" value="Sign Up">
+    <a class="lastline"  style="color: rgb(20, 164, 118);"  href="/login" > Have an Account? <h  style="color: aqua;">Sign In
+    </a>
+   </div>
+ 
 
    
 </form> 
